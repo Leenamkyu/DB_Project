@@ -1,3 +1,6 @@
+<?php
+  require_once("dbconfig.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,23 +29,32 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script type="text/javascript">
 
-  
-var myList = [
-  { "영화제목": "신의한수", "감독": "라곤" },
-  { "감독": "가나다", "배우": "장나라" },
-  { "영화제목": "스파이더맨", "배우": "김희철" }
-];
+var request;
 
+$(document).ready(function () {
 
-      //  request = $.post('/sensor/userlistview/request', {
-      //      USN: getUSN,
-      //  }, function (returnedData) {
-      //  });
-      //  request.done(function (response, textStatus, jqXHR) { // Log a message to the console
-      
-  buildHtmlTable(myList, '#movie_list_table');
+  request = $.post("/DB_Project/select_process.php", {
+           title: "신의한수",
+       }, function (returnedData) {
+       });
 
-  function buildHtmlTable(selector) {
+         request.done(function (response, textStatus, jqXHR) { // Log a message to the console
+        if (response.length == 0) {
+                alert('데이터베이스에 영화가 없습니다.')
+            } else {
+              buildHtmlTable(response, '#movie_list_table');
+            }
+        });
+        request.fail(function (jqXHR, textStatus, errorThrown) { // Log the error to the console
+        alert('fail request');
+        });
+        
+         
+});
+</script>
+
+<script>
+function buildHtmlTable(myList, selector)  {
     var columns = addAllColumnHeaders(myList, selector);
 
     for (var i = 0; i < myList.length; i++) {
@@ -52,7 +64,7 @@ var myList = [
             if (cellValue == null) cellValue = "";
             row$.append($('<td style="color:white	"/>').html(cellValue));
         }
-        row$.append($('<button type="button" id=row"' + i + '" style ="background-color:white; "class="btn btn btn-block" value="' + myList[i]['SSN'] + '" />').html('영화 삭제'));
+        row$.append($('<button type="button" id=row"' + i + '" style ="background-color:white; "class="btn btn btn-block" value="' + myList[i]['d_id'] + '" />').html('영화 삭제'));
 
         $(selector).append(row$);
     }
@@ -84,16 +96,15 @@ function addAllColumnHeaders(myList, selector) {
 }
 </script>
 
-<body onLoad="buildHtmlTable('#movie_list_table')">
-
+<body>
   <!-- Navigation -->
   <nav class="navbar navbar-light bg-light static-top">
     <div class="container">
       <a class="navbar-brand" href="#"> Database Project</a>
-      <a href="/movie_insert.html">영화 추가</a>
+      <a href="movie_insert.php">영화 추가</a>
       <a href="#">감독</a>
       <a href="#">배우</a>
-      <a 0 href="#">극장</a>
+      <a href="#">극장</a>
     </div>
   </nav>
 
