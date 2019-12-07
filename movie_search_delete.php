@@ -121,7 +121,7 @@ function addAllColumnHeaders(myList, selector) {
           <form>
             <div class="form-row">
               <div class="col-12 col-md-9 mb-2 mb-md-0">
-                <input type="email" class="form-control form-control-lg" placeholder="ex) 신의 한수...">
+                <input type="text" class="form-control form-control-lg" placeholder="ex) 신의 한수...">
               </div>
               <div class="col-12 col-md-3">
                 <button type="submit" class="btn btn-block btn-lg btn-primary">검색</button>
