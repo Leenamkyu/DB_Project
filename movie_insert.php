@@ -32,7 +32,7 @@
   <nav class="navbar navbar-light bg-light static-top">
     <div class="container">
       <a class="navbar-brand" href="#"> Database Project</a>
-      <a href="/movie_insert.php">영화 추가</a>
+      <a href="/movie_search_delete.php">영화</a>
       <a href="/director_search_delete.php">감독</a>
       <a href="/actor_search_delete.php">배우</a>
       <a href="/theater_search_delete.php">극장</a>

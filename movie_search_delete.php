@@ -48,10 +48,45 @@ $(document).ready(function () {
         });
         request.fail(function (jqXHR, textStatus, errorThrown) { // Log the error to the console
         alert('fail request');
-        });
-        
-         
+        });         
+
+
+$('#search_button').click(function () {
+            event.preventDefault();
+           
+            if (request) {
+                request.abort();
+            }
+
+            var search_value = $("#search_value").val();
+            alert(search_value);           
+
+            request = $.post(' php ', {
+               title: search_value,                
+             }, function (returnedData) {
+                console.log(returnedData);
+            });
+
+            request.done(function (response, textStatus, jqXHR) { // Log a message to the console
+            if (response.length == 0) {
+                    alert('해당 영화가 없습니다.')
+                } else {
+                  buildHtmlTable(response, '#movie_list_table');
+                }
+            });
+            request.fail(function (jqXHR, textStatus, errorThrown) { // Log the error to the console
+            alert('해당 영화를 찾지 못했습니다');
+            });       
+            
 });
+
+
+});
+
+
+
+
+
 </script>
 
 <script>
@@ -121,10 +156,10 @@ function addAllColumnHeaders(myList, selector) {
           <form>
             <div class="form-row">
               <div class="col-12 col-md-9 mb-2 mb-md-0">
-                <input type="text" class="form-control form-control-lg" placeholder="ex) 신의 한수...">
+                <input type="text" id="search_value" class="form-control form-control-lg" placeholder="ex) 신의 한수...">
               </div>
               <div class="col-12 col-md-3">
-                <button type="submit" class="btn btn-block btn-lg btn-primary">검색</button>
+                <button type="submit" id="search_button"class="btn btn-block btn-lg btn-primary">검색</button>
               </div>
             </div>
           </form>
