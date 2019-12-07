@@ -32,7 +32,7 @@
   <nav class="navbar navbar-light bg-light static-top">
     <div class="container">
       <a class="navbar-brand" href="#"> Database Project</a>
-      <a href="/movie_insert.php">영화 추가</a>
+      <a href="/movie_search_delete.php">영화 </a>
       <a href="/director_search_delete.php">감독</a>
       <a href="/actor_search_delete.php">배우</a>
       <a href="/theater_search_delete.php">극장</a>
@@ -40,7 +40,7 @@
   </nav>
 
   <!-- Masthead -->
-  <header  class="masthead text-white text-center"  style="background-image: url('img/bg-masthead.jpg');">
+  <header  class="masthead text-white text-center"  style="background-image: url('img/director_insert.jpg');">
     <div class="overlay"></div>
     <div class="gtco-container">
         <div class="row">
@@ -48,7 +48,7 @@
                 
                 <div class="row row-mt-15em">
                     <div class="col-md-7 mt-text animate-box" data-animate-effect="fadeInUp">
-                        <h1 style="color:white">새로운 영화 정보를 입력하세요</h1>	
+                        <h1 style="color:white">새로운 감독 정보를 입력하세요</h1>	
                     </div>
                     <div class="col-md-4 col-md-push-1 animate-box" data-animate-effect="fadeInRight">
                         <div class="form-wrap">
@@ -56,18 +56,25 @@
                                 
                                 <div class="tab-content">
                                     <div class="tab-content-inner active" data-content="signup">
-                                        <h3 style="color:white">영화 정보</h3>
+                                        <h3 style="color:white">감독 정보</h3>
                                         <form action="#">
+                                            
                                             <div class="row form-group">
                                                 <div class="col-md-12">
-                                                    <label style="color:white"for="title">영화 제목</label>
-                                                    <input type="text" class="form-control" id="title"  placeholder="영화 제목">
+                                                    <label style="color:white"for="title">감독 이름</label>
+                                                    <input type="text" class="form-control" id="name"  placeholder="감독 이름">
                                                 </div>
                                             </div>
                                             <div class="row form-group">
                                                 <div class="col-md-12">
-                                                    <label style="color:white"for="genre">장르</label>
-                                                    <input type="text" class="form-control" id="genre"  placeholder="장르">
+                                                    <label style="color:white"for="birth">생년월일</label>
+                                                    <input type="date" class="form-control" id="birth"  placeholder="생년월일">
+                                                </div>
+                                            </div>
+                                            <div class="row form-group">
+                                                <div class="col-md-12">
+                                                    <label style="color:white"for="gender"">성별</label>
+                                                    <input type="text" class="form-control" id="gender"  placeholder="남 / 녀 ">
                                                 </div>
                                             </div>
                                             <div class="row form-group">
@@ -76,52 +83,10 @@
                                                     <input type="text" class="form-control" id="country"  placeholder="국가">
                                                 </div>
                                             </div>
+                                            
                                             <div class="row form-group">
                                                 <div class="col-md-12">
-                                                    <label style="color:white"for="running_time">러닝 타임</label>
-                                                    <input type="text" class="form-control" id="running_time"  placeholder="러닝 타임"">
-                                                </div>
-                                            </div>
-                                            <div class="row form-group">
-                                                <div class="col-md-12">
-                                                    <label style="color:white"for="release_date">개봉 일자</label>
-                                                    <input type="date" class="form-control" id="release_date"  placeholder="개봉 일자">
-                                                </div>
-                                            </div>
-                                            <div class="row form-group">
-                                                <div class="col-md-12">
-                                                    <label style="color:white"for="age_limit">연령 제한</label>
-                                                    <input type="text" class="form-control" id="age_limit"  placeholder="연령 제한">
-                                                </div>
-                                            </div>
-                                            <div class="row form-group">
-                                                <div class="col-md-12">
-                                                    <label style="color:white"for="d_id">디렉터_id</label>
-                                                    <input type="text" class="form-control" id="d_id"  placeholder="디렉터_id">
-                                                </div>
-                                            </div>
-                                            <div class="row form-group">
-                                                <div class="col-md-12">
-                                                    <label style="color:white"for="rating">별점</label>
-                                                    <input type="text" class="form-control" id="rating"  placeholder="별점">
-                                                </div>
-                                            </div>
-                                            <div class="row form-group">
-                                                <div class="col-md-12">
-                                                    <label style="color:white"for="opening_period">개봉 기간</label>
-                                                    <input type="text" class="form-control" id="opening_period"  placeholder="개봉 기간">
-                                                </div>
-                                            </div>
-                                            <div class="row form-group">
-                                                <div class="col-md-12">
-                                                    <label style="color:white"for="booking_rate">예매율</label>
-                                                    <input type="text" class="form-control" id="booking_rate"  placeholder="예매율">
-                                                </div>
-                                            </div>
-
-                                            <div class="row form-group">
-                                                <div class="col-md-12">
-                                                    <input type="submit" class="btn btn-primary btn-block" value="추가"">
+                                                    <input type="submit" class="btn btn-primary btn-block" value="추가">
                                                 </div>
                                             </div>
                                         </form>	
@@ -133,7 +98,6 @@
                     </div>
                 </div>
                         
-                
             </div>
         </div>
     </div>

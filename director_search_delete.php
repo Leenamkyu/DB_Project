@@ -28,7 +28,7 @@
 </head>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 
 var request;
 
@@ -52,7 +52,7 @@ $(document).ready(function () {
         
          
 });
-</script>
+</script> -->
 
 <script>
 function buildHtmlTable(myList, selector)  {
@@ -65,7 +65,7 @@ function buildHtmlTable(myList, selector)  {
             if (cellValue == null) cellValue = "";
             row$.append($('<td style="color:white	"/>').html(cellValue));
         }
-        row$.append($('<button type="button" id=row"' + i + '" style ="background-color:white; "class="btn btn btn-block" value="' + myList[i]['m_id'] + '" />').html('영화 삭제'));
+        row$.append($('<button type="button" id=row"' + i + '" style ="background-color:white; "class="btn btn btn-block" value="' + myList[i]['d_id'] + '" />').html('감독 삭제'));
 
         $(selector).append(row$);
     }
@@ -102,26 +102,26 @@ function addAllColumnHeaders(myList, selector) {
   <nav class="navbar navbar-light bg-light static-top">
     <div class="container">
       <a class="navbar-brand" href="#"> Database Project</a>
-      <a href="/movie_insert.php">영화 추가</a>
-      <a href="/director_search_delete.php">감독</a>
+      <a href="/movie_search_delete.php">영화</a>
+      <a href="/director_insert.php">감독 추가</a>
       <a href="/actor_search_delete.php">배우</a>
       <a href="/theater_search_delete.php">극장</a>
     </div>
   </nav>
 
   <!-- Masthead -->
-  <header class="masthead text-white text-center"  style="background-image: url('img/movie_bg2.jpg');" >
+  <header class="masthead text-white text-center"  style="background-image: url('img/director_search.jpg');" >
     <div class="overlay"></div>
     <div class="container">
       <div class="row">
         <div class="col-xl-9 mx-auto">
-          <h1 class="mb-5">영화 제목을 입력하세요</h1>
+          <h1 class="mb-5">감독 이름을 입력하세요</h1>
         </div>
         <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
           <form>
             <div class="form-row">
               <div class="col-12 col-md-9 mb-2 mb-md-0">
-                <input type="email" class="form-control form-control-lg" placeholder="ex) 신의 한수...">
+                <input type="email" class="form-control form-control-lg" placeholder="ex)봉준호...">
               </div>
               <div class="col-12 col-md-3">
                 <button type="submit" class="btn btn-block btn-lg btn-primary">검색</button>
@@ -129,7 +129,7 @@ function addAllColumnHeaders(myList, selector) {
             </div>
           </form>
           
-          <h1><br>영화 목록 </br></h1>
+          <h1><br>감독 목록</br></h1>
           <div class="table-responsive">
               <!-- <table class="table table-striped table-bordered table-hover" -->
               <table class="table  
@@ -143,7 +143,6 @@ function addAllColumnHeaders(myList, selector) {
   </header>
 
   <!-- Advanced Tables -->
-
 
 
   <!-- Footer -->
