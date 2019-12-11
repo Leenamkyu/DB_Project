@@ -46,7 +46,7 @@ $('#add_button').click(function () {
       var add_phone_number = $("#phone_number").val();
       
       alert("영화관 이름: "+add_theater_name+", 시: "+add_si+", 도: "+ add_do+ ", 군: "+add_gun+", 구: "+add_gu+", 전화번호: "+add_phone_number);           
-
+      
       request = $.post('/DB_Project/theater_insert_process.php', {
           // sql: order, -------> 여기서 sql문을 다 만들어서 보내려니까 에러가 발생 ----> 각 삽입 페이지를 별도로 만들면 에러 x
           sql_theater_name: add_theater_name,

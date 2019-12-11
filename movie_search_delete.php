@@ -31,7 +31,7 @@
 <script type="text/javascript">
 
 var request;
-
+var  request2;
 $(document).ready(function () {
 
   request = $.post("/DB_Project/select_process.php", {
@@ -45,6 +45,29 @@ $(document).ready(function () {
                 alert('데이터베이스에 영화가 없습니다.')
             } else {
               buildHtmlTable(response, '#movie_list_table');
+              $("[id^=row]").click(function () {
+                    
+                  if (confirm('해당 영화를 삭제하시겠습니까?')) {
+                     
+                      //  request2 = $.post('/', {
+                      //      m_id: this.value,                           
+                      //  }, function (returnedData) {
+                      //      console.log(returnedData);
+                      //  });
+                      //  request2.done(function (response, textStatus, jqXHR) {
+                      //      alert('영화가 삭제되었습니다.');
+                      //setTimeout(() => {
+                      //location.reload();   
+                      //}, 1000);                     
+                      //  });
+                      //  request2.fail(function (response, textStatus, jqXHR) {
+                      //       alert('영화 삭제에 실패하였습니다.')
+                      //  });
+                   } 
+                   else {
+                    
+                   }
+               }); // end of button click
             }
         });
         request.fail(function (jqXHR, textStatus, errorThrown) { // Log the error to the console
@@ -74,6 +97,8 @@ $('#search_button').click(function () {
                 } else {
                   $('#movie_list_table').empty();//새로운 쿼리에 대한 table을 생성하기 위해 기존 table 삭제(남규)
                   buildHtmlTable(response, '#movie_list_table');
+
+
                 }
             });
             request.fail(function (jqXHR, textStatus, errorThrown) { // Log the error to the console
