@@ -1,6 +1,6 @@
 <?php
   require_once("dbconfig.php");
-?>
+?> 
 
 <!DOCTYPE html>
 <html lang="en">
@@ -31,81 +31,88 @@
 <script type="text/javascript">
 
 var request;
-
+var  request2;
 $(document).ready(function () {
 
-request = $.post("/DB_Project/select_process.php", {
-        //  title: "신의한수",
-        sql: "select * from director",
-     }, function (returnedData) {
-     });
+  request = $.post("/DB_Project/select_process.php", {
+          //  title: "신의한수",
+          sql: "select * from movie",
+       }, function (returnedData) {
+       });
 
-       request.done(function (response, textStatus, jqXHR) { // Log a message to the console
-      if (response.length == 0) {
-              alert('데이터베이스에 감독 정보가 없습니다.')
-          } else {
-            buildHtmlTable(response, '#movie_list_table');
-            $("[id^=row]").click(function () {
+         request.done(function (response, textStatus, jqXHR) { // Log a message to the console
+        if (response.length == 0) {
+                alert('데이터베이스에 영화가 없습니다.')
+            } else {
+              buildHtmlTable(response, '#movie_list_table');
+              $("[id^=row]").click(function () {
                     
-                    if (confirm('해당 감독을 삭제하시겠습니까?')) {
-                       
-                         request2 = $.post('/DB_Project/director_delete_process.php', {
-                             d_id: this.value,                           
-                         }, function (returnedData) {
-                             console.log(returnedData);
-                         });
-                         request2.done(function (response, textStatus, jqXHR) {
-                             alert('감독이 삭제되었습니다.');
-                        setTimeout(() => {
-                        location.reload();   
-                        }, 1000);                     
-                         });
-                         request2.fail(function (response, textStatus, jqXHR) {
-                              alert('감독 삭제에 실패하였습니다.')
-                         });
-                     } 
-                     else {
-                      
-                     }
-                 }); // end of button click
-          }
-      });
-      request.fail(function (jqXHR, textStatus, errorThrown) { // Log the error to the console
-      alert('fail request');
-      });         
+                  if (confirm('해당 영화를 삭제하시겠습니까?')) {
+                     
+                       request2 = $.post('/DB_Project/delete_process/movie_delete_process.php', {
+                           m_id: this.value,                           
+                       }, function (returnedData) {
+                           console.log(returnedData);
+                       });
+                       request2.done(function (response, textStatus, jqXHR) {
+                           alert('영화가 삭제되었습니다.');
+                      setTimeout(() => {
+                      location.reload();   
+                      }, 1000);                     
+                       });
+                       request2.fail(function (response, textStatus, jqXHR) {
+                            alert('영화 삭제에 실패하였습니다.')
+                       });
+                   } 
+                   else {
+                    
+                   }
+               }); // end of button click
+            }
+        });
+        request.fail(function (jqXHR, textStatus, errorThrown) { // Log the error to the console
+        alert('fail request');
+        });         
 
 
 $('#search_button').click(function () {
-          event.preventDefault();
-         
-          if (request) {
-              request.abort();
-          }
+            event.preventDefault();
+           
+            if (request) {
+                request.abort();
+            }
 
-          var search_value = $("#search_value").val();
-          alert(search_value);           
+            var search_value = $("#search_value").val();
+            alert(search_value);           
 
-          request = $.post('/DB_Project/select_process.php', {
-             sql: search_value,                
-           }, function (returnedData) {
-              console.log(returnedData);
-          });
+            request = $.post('/DB_Project/select_process.php', {
+               sql: search_value,                
+             }, function (returnedData) {
+                console.log(returnedData);
+            });
 
-          request.done(function (response, textStatus, jqXHR) { // Log a message to the console
-          if (response.length == 0) {
-                  alert('검색 조건에 일치하는 감독이 없습니다.')
-              } else {
-                $('#movie_list_table').empty();//새로운 쿼리에 대한 table을 생성하기 위해 기존 table 삭제(남규)
-                buildHtmlTable(response, '#movie_list_table');
-              }
-          });
-          request.fail(function (jqXHR, textStatus, errorThrown) { // Log the error to the console
-          alert('해당 감독을 찾지 못했습니다');
-          });   
+            request.done(function (response, textStatus, jqXHR) { // Log a message to the console
+            if (response.length == 0) {
+                    alert('검색 조건에 일치하는 영화가 없습니다.')
+                } else {
+                  $('#movie_list_table').empty();//새로운 쿼리에 대한 table을 생성하기 위해 기존 table 삭제(남규)
+                  buildHtmlTable(response, '#movie_list_table');
+
+
+                }
+            });
+            request.fail(function (jqXHR, textStatus, errorThrown) { // Log the error to the console
+            alert('해당 영화를 찾지 못했습니다');
+            });       
+            
 });
 
 
 });
+
+
+
+
 
 </script>
 
@@ -120,7 +127,7 @@ function buildHtmlTable(myList, selector)  {
             if (cellValue == null) cellValue = "";
             row$.append($('<td style="color:white	"/>').html(cellValue));
         }
-        row$.append($('<button type="button" id=row"' + i + '" style ="background-color:white; "class="btn btn btn-block" value="' + myList[i]['d_id'] + '" />').html('감독 삭제'));
+        row$.append($('<button type="button" id=row"' + i + '" style ="background-color:white; "class="btn btn btn-block" value="' + myList[i]['m_id'] + '" />').html('영화 삭제'));
 
         $(selector).append(row$);
     }
@@ -136,11 +143,12 @@ function addAllColumnHeaders(myList, selector) {
 
     for (var i = 0; i < myList.length; i++) {
         var rowHash = myList[i];
+        // console.log(rowHash);
         for (var key in rowHash) {
             if ($.inArray(key, columnSet) == -1) {
-                columnSet.push(key);
-                headerTr$.append($('<th style="color:white"/>').html(key));
-
+                // console.log(key);
+                  columnSet.push(key);
+                  headerTr$.append($('<th style="color:white"/>').html(key));
             }
         }
 
@@ -157,26 +165,26 @@ function addAllColumnHeaders(myList, selector) {
   <nav class="navbar navbar-light bg-light static-top">
     <div class="container">
       <a class="navbar-brand" href="#"> Database Project</a>
-      <a href="/DB_Project/movie_search_delete.php">영화</a>
-      <a href="/DB_Project/director_insert.php">감독 추가</a>
-      <a href="/DB_Project/actor_search_delete.php">배우</a>
-      <a href="/DB_Project/theater_search_delete.php">극장</a>
+      <a href="/DB_Project/insert/movie_insert.php">영화 추가</a>
+      <a href="/DB_Project/main/director_search_delete.php">감독</a>
+      <a href="/DB_Project/main/actor_search_delete.php">배우</a>
+      <a href="/DB_Project/main/theater_search_delete.php">극장</a>
     </div>
   </nav>
 
   <!-- Masthead -->
-  <header class="masthead text-white text-center"  style="background-image: url('img/director_search.jpg');" >
+  <header class="masthead text-white text-center"  style="background-image: url('img/movie_bg2.jpg');" >
     <div class="overlay"></div>
     <div class="container">
       <div class="row">
         <div class="col-xl-9 mx-auto">
-          <h1 class="mb-5">감독 이름을 입력하세요</h1>
+          <h1 class="mb-5">영화 제목을 입력하세요</h1>
         </div>
         <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
           <form>
             <div class="form-row">
               <div class="col-12 col-md-9 mb-2 mb-md-0">
-                <input type="text" id="search_value" class="form-control form-control-lg" placeholder="ex)봉준호...">
+                <input type="text" id="search_value" class="form-control form-control-lg" placeholder="ex) 신의 한수...">
               </div>
               <div class="col-12 col-md-3">
                 <button type="submit" id="search_button" class="btn btn-block btn-lg btn-primary">검색</button>
@@ -184,7 +192,7 @@ function addAllColumnHeaders(myList, selector) {
             </div>
           </form>
           
-          <h1><br>감독 목록</br></h1>
+          <h1><br>영화 목록 </br></h1>
           <div class="table-responsive">
               <!-- <table class="table table-striped table-bordered table-hover" -->
               <table class="table  
@@ -198,6 +206,7 @@ function addAllColumnHeaders(myList, selector) {
   </header>
 
   <!-- Advanced Tables -->
+
 
 
   <!-- Footer -->

@@ -48,7 +48,7 @@
                     
                     if (confirm('해당 배우를 삭제하시겠습니까?')) {
                        
-                         request2 = $.post('/DB_Project/actor_delete_process.php', {
+                         request2 = $.post('/DB_Project/delete_process/actor_delete_process.php', {
                              a_id: this.value,                           
                          }, function (returnedData) {
                              console.log(returnedData);
@@ -154,10 +154,10 @@ $('#search_button').click(function () {
     <nav class="navbar navbar-light bg-light static-top">
       <div class="container">
         <a class="navbar-brand" href="#"> Database Project</a>
-        <a href="/DB_Project/movie_search_delete.php">영화</a>
-        <a href="/DB_Project/director_search_delete.php">감독</a>
-        <a href="/DB_Project/actor_insert.php">배우 추가</a>
-        <a href="/DB_Project/theater_search_delete.php">극장</a>
+        <a href="/DB_Project/main/movie_search_delete.php">영화</a>
+        <a href="/DB_Project/main/director_search_delete.php">감독</a>
+        <a href="/DB_Project/insert/actor_insert.php">배우 추가</a>
+        <a href="/DB_Project/main/theater_search_delete.php">극장</a>
       </div>
     </nav>
   
