@@ -24,7 +24,51 @@
 </head>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
 
+$('#add_button').click(function () {
+
+      var add_title = $("#title").val();
+      var add_genre = $("#genre").val();
+      var add_country = $("#country").val();
+      var add_running_time = $("#running_time").val();
+      var add_release_date = $("#release_date").val();
+      var add_age_limit = $("#age_limit").val();
+      var add_d_id = $("#d_id").val();
+      var add_rating = $("#rating").val();
+      var add_opening_period = $("#opening_period").val();
+      var add_booking_rate = $("#booking_rate").val();
+      
+      // var values = "(null,"+add_name+","+add_birth+","+add_gender+","+add_country+")";  
+      // console.log(values);     
+      // var order = "insert into director values"+values;
+      // console.log(order);
+      alert("제목: "+add_title+", 장르: "+add_genre+", 국가: "+ add_country+ ", 러닝타임: "+add_running_time+", 개봉일: "+add_release_date+
+            ", 연령제한: "+add_age_limit+", d_id: "+add_d_id+", 평점: "+add_rating+", 상영기간: "+add_opening_period+", 예매율: "+ add_booking_rate);           
+
+      request = $.post('/DB_Project/movie_insert_process.php', {
+          // sql: order, -------> 여기서 sql문을 다 만들어서 보내려니까 에러가 발생 ----> 각 삽입 페이지를 별도로 만들면 에러 x
+          sql_title: add_title,
+          sql_genre: add_genre,
+          sql_country: add_country,
+          sql_running_time: add_running_time,
+          sql_release_date: add_release_date,
+          sql_age_limit: add_age_limit,
+          sql_d_id: add_d_id,
+          sql_rating: add_rating,
+          sql_opening_period: add_opening_period,
+          sql_booking_rate: add_booking_rate,
+        }, function (returnedData) {
+          console.log(returnedData);
+      });
+       
+});
+
+
+});
+
+</script>
 
 <body>
 
@@ -32,10 +76,10 @@
   <nav class="navbar navbar-light bg-light static-top">
     <div class="container">
       <a class="navbar-brand" href="#"> Database Project</a>
-      <a href="/movie_search_delete.php">영화</a>
-      <a href="/director_search_delete.php">감독</a>
-      <a href="/actor_search_delete.php">배우</a>
-      <a href="/theater_search_delete.php">극장</a>
+      <a href="/DB_Project/movie_search_delete.php">영화</a>
+      <a href="/DB_Project/director_search_delete.php">감독</a>
+      <a href="/DB_Project/actor_search_delete.php">배우</a>
+      <a href="/DB_Project/theater_search_delete.php">극장</a>
     </div>
   </nav>
 
@@ -121,7 +165,7 @@
 
                                             <div class="row form-group">
                                                 <div class="col-md-12">
-                                                    <input type="submit" class="btn btn-primary btn-block" value="추가"">
+                                                    <input type="submit" id= "add_button" class="btn btn-primary btn-block" value="추가">
                                                 </div>
                                             </div>
                                         </form>	

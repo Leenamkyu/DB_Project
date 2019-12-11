@@ -1,3 +1,7 @@
+<?php
+  require_once("dbconfig.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,7 +28,37 @@
 </head>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
 
+$('#add_button').click(function () {
+
+      var add_name = $("#name").val();
+      var add_birth = $("#birth").val();
+      var add_gender = $("#gender").val();
+      var add_country = $("#country").val();
+      
+      // var values = "(null,"+add_name+","+add_birth+","+add_gender+","+add_country+")";  
+      // console.log(values);     
+      // var order = "insert into director values"+values;
+      // console.log(order);
+      alert("이름: "+add_name+", 생일: "+add_birth+", 성별: "+ add_gender+ ", 국적: "+add_country);           
+
+      request = $.post('/DB_Project/actor_insert_process.php', {
+          // sql: order, -------> 여기서 sql문을 다 만들어서 보내려니까 에러가 발생 ----> 각 삽입 페이지를 별도로 만들면 에러 x
+          sql_name: add_name,
+          sql_birth: add_birth,
+          sql_gender: add_gender,
+          sql_country: add_country,
+        }, function (returnedData) {
+          console.log(returnedData);
+      });
+       
+});
+
+
+});
+</script>
 
 <body>
 
@@ -32,10 +66,10 @@
   <nav class="navbar navbar-light bg-light static-top">
     <div class="container">
       <a class="navbar-brand" href="#"> Database Project</a>
-      <a href="/movie_search_delete.php">영화 </a>
-      <a href="/director_search_delete.php">감독</a>
-      <a href="/actor_search_delete.php">배우</a>
-      <a href="/theater_search_delete.php">극장</a>
+      <a href="/DB_Project/movie_search_delete.php">영화 </a>
+      <a href="/DB_Project/director_search_delete.php">감독</a>
+      <a href="/DB_Project/actor_search_delete.php">배우</a>
+      <a href="/DB_Project/theater_search_delete.php">극장</a>
     </div>
   </nav>
 
@@ -60,8 +94,8 @@
                                         <form action="#">
                                             <div class="row form-group">
                                                 <div class="col-md-12">
-                                                    <label style="color:white"for="title">감독 이름</label>
-                                                    <input type="text" class="form-control" id="name"  placeholder="감독 이름">
+                                                    <label style="color:white"for="title">배우 이름</label>
+                                                    <input type="text" class="form-control" id="name"  placeholder="배우 이름">
                                                 </div>
                                             </div>
                                             <div class="row form-group">
@@ -72,20 +106,20 @@
                                             </div>
                                             <div class="row form-group">
                                                 <div class="col-md-12">
-                                                    <label style="color:white"for="gender"">성별</label>
-                                                    <input type="text" class="form-control" id="gender"  placeholder="남 / 녀 "">
+                                                    <label style="color:white"for="gender">성별</label>
+                                                    <input type="text" class="form-control" id="gender"  placeholder="남 / 녀 ">
                                                 </div>
                                             </div>
                                             <div class="row form-group">
                                                 <div class="col-md-12">
-                                                    <label style="color:white"for="country"">국가</label>
+                                                    <label style="color:white"for="country">국가</label>
                                                     <input type="text" class="form-control" id="country"  placeholder="국가">
                                                 </div>
                                             </div>
                                             
                                             <div class="row form-group">
                                                 <div class="col-md-12">
-                                                    <input type="submit" class="btn btn-primary btn-block" value="추가">
+                                                    <input type="submit" id="add_button" class="btn btn-primary btn-block" value="추가">
                                                 </div>
                                             </div>
                                         </form>	

@@ -1,6 +1,6 @@
-<!-- <?php
+<?php
   require_once("dbconfig.php");
-  ?> -->
+?>
   
   <!DOCTYPE html>
   <html lang="en">
@@ -28,20 +28,20 @@
   </head>
   
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  <!-- <script type="text/javascript">
+  <script type="text/javascript">
   
   var request;
   
   $(document).ready(function () {
   
     request = $.post("/DB_Project/select_process.php", {
-             title: "신의한수",
+             sql: "select * from actor",
          }, function (returnedData) {
          });
   
            request.done(function (response, textStatus, jqXHR) { // Log a message to the console
           if (response.length == 0) {
-                  alert('데이터베이스에 영화가 없습니다.')
+                  alert('데이터베이스에 배우 정보가 없습니다.')
               } else {
                 buildHtmlTable(response, '#movie_list_table');
               }
@@ -49,10 +49,39 @@
           request.fail(function (jqXHR, textStatus, errorThrown) { // Log the error to the console
           alert('fail request');
           });
+
+$('#search_button').click(function () {
+          event.preventDefault();
+
+          if (request) {
+              request.abort();
+          }
+
+          var search_value = $("#search_value").val();
+          alert(search_value);           
+
+          request = $.post('/DB_Project/select_process.php', {
+             sql: search_value,                
+           }, function (returnedData) {
+              console.log(returnedData);
+          });
+
+          request.done(function (response, textStatus, jqXHR) { // Log a message to the console
+          if (response.length == 0) {
+                  alert('검색 조건에 일치하는 배우가 없습니다.')
+              } else {
+                $('#movie_list_table').empty();//새로운 쿼리에 대한 table을 생성하기 위해 기존 table 삭제(남규)
+                buildHtmlTable(response, '#movie_list_table');
+              }
+          });
+          request.fail(function (jqXHR, textStatus, errorThrown) { // Log the error to the console
+          alert('해당 배우를 찾지 못했습니다');
+          });
           
+});         
            
-  });
-  </script> -->
+});
+  </script>
   
   <script>
   function buildHtmlTable(myList, selector)  {
@@ -102,10 +131,10 @@
     <nav class="navbar navbar-light bg-light static-top">
       <div class="container">
         <a class="navbar-brand" href="#"> Database Project</a>
-        <a href="/movie_search_delete.php">영화</a>
-        <a href="/director_search_delete.php">감독</a>
-        <a href="/actor_insert.php">배우 추가</a>
-        <a href="/theater_search_delete.php">극장</a>
+        <a href="/DB_Project/movie_search_delete.php">영화</a>
+        <a href="/DB_Project/director_search_delete.php">감독</a>
+        <a href="/DB_Project/actor_insert.php">배우 추가</a>
+        <a href="/DB_Project/theater_search_delete.php">극장</a>
       </div>
     </nav>
   
@@ -121,10 +150,10 @@
             <form>
               <div class="form-row">
                 <div class="col-12 col-md-9 mb-2 mb-md-0">
-                  <input type="text" class="form-control form-control-lg" placeholder="ex) 권상우...">
+                  <input type="text" id= "search_value" class="form-control form-control-lg" placeholder="ex) 권상우...">
                 </div>
                 <div class="col-12 col-md-3">
-                  <button type="submit" class="btn btn-block btn-lg btn-primary">검색</button>
+                  <button type="submit" id= "search_button" class="btn btn-block btn-lg btn-primary">검색</button>
                 </div>
               </div>
             </form>

@@ -1,6 +1,6 @@
-<!-- <?php
+<?php
   require_once("dbconfig.php");
-?> -->
+?> 
 
 <!DOCTYPE html>
 <html lang="en">
@@ -35,7 +35,8 @@ var request;
 $(document).ready(function () {
 
   request = $.post("/DB_Project/select_process.php", {
-           title: "신의한수",
+          //  title: "신의한수",
+          sql: "select * from movie",
        }, function (returnedData) {
        });
 
@@ -61,16 +62,17 @@ $('#search_button').click(function () {
             var search_value = $("#search_value").val();
             alert(search_value);           
 
-            request = $.post(' php ', {
-               title: search_value,                
+            request = $.post('/DB_Project/select_process.php', {
+               sql: search_value,                
              }, function (returnedData) {
                 console.log(returnedData);
             });
 
             request.done(function (response, textStatus, jqXHR) { // Log a message to the console
             if (response.length == 0) {
-                    alert('해당 영화가 없습니다.')
+                    alert('검색 조건에 일치하는 영화가 없습니다.')
                 } else {
+                  $('#movie_list_table').empty();//새로운 쿼리에 대한 table을 생성하기 위해 기존 table 삭제(남규)
                   buildHtmlTable(response, '#movie_list_table');
                 }
             });
@@ -116,11 +118,12 @@ function addAllColumnHeaders(myList, selector) {
 
     for (var i = 0; i < myList.length; i++) {
         var rowHash = myList[i];
+        // console.log(rowHash);
         for (var key in rowHash) {
             if ($.inArray(key, columnSet) == -1) {
-                columnSet.push(key);
-                headerTr$.append($('<th style="color:white"/>').html(key));
-
+                // console.log(key);
+                  columnSet.push(key);
+                  headerTr$.append($('<th style="color:white"/>').html(key));
             }
         }
 
@@ -137,10 +140,10 @@ function addAllColumnHeaders(myList, selector) {
   <nav class="navbar navbar-light bg-light static-top">
     <div class="container">
       <a class="navbar-brand" href="#"> Database Project</a>
-      <a href="/movie_insert.php">영화 추가</a>
-      <a href="/director_search_delete.php">감독</a>
-      <a href="/actor_search_delete.php">배우</a>
-      <a href="/theater_search_delete.php">극장</a>
+      <a href="/DB_Project/movie_insert.php">영화 추가</a>
+      <a href="/DB_Project/director_search_delete.php">감독</a>
+      <a href="/DB_Project/actor_search_delete.php">배우</a>
+      <a href="/DB_Project/theater_search_delete.php">극장</a>
     </div>
   </nav>
 
@@ -159,7 +162,7 @@ function addAllColumnHeaders(myList, selector) {
                 <input type="text" id="search_value" class="form-control form-control-lg" placeholder="ex) 신의 한수...">
               </div>
               <div class="col-12 col-md-3">
-                <button type="submit" id="search_button"class="btn btn-block btn-lg btn-primary">검색</button>
+                <button type="submit" id="search_button" class="btn btn-block btn-lg btn-primary">검색</button>
               </div>
             </div>
           </form>

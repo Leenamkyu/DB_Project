@@ -24,7 +24,47 @@
 </head>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
 
+$('#add_button').click(function () {
+
+      var add_theater_name = $("#theater_name").val();
+      var add_si;
+      var add_do;
+      var add_gun;
+      var add_gu;
+      if(!$("#si").val()){
+        add_si = $("#si").val();
+      }else if(!$("#do").val()){
+        add_do = $("#do").val();
+      }else if(!$("#gun").val()){
+        add_gun = $("#gun").val();
+      }else if(!$("#gu").val()){
+        add_gu = $("#gu").val();
+      }
+      var add_phone_number = $("#phone_number").val();
+      
+      alert("영화관 이름: "+add_theater_name+", 시: "+add_si+", 도: "+ add_do+ ", 군: "+add_gun+", 구: "+add_gu+", 전화번호: "+add_phone_number);           
+
+      request = $.post('/DB_Project/theater_insert_process.php', {
+          // sql: order, -------> 여기서 sql문을 다 만들어서 보내려니까 에러가 발생 ----> 각 삽입 페이지를 별도로 만들면 에러 x
+          sql_theater_name: add_theater_name,
+          sql_si: add_si,
+          sql_do: add_do,
+          sql_gun: add_gun,
+          sql_gu: add_gu,
+          sql_phone_number: add_phone_number,
+        }, function (returnedData) {
+          console.log(returnedData);
+      });
+       
+});
+
+
+});
+
+</script>
 
 <body>
 
@@ -32,10 +72,10 @@
   <nav class="navbar navbar-light bg-light static-top">
     <div class="container">
       <a class="navbar-brand" href="#"> Database Project</a>
-      <a href="/movie_search_delete.php">영화 </a>
-      <a href="/director_search_delete.php">감독</a>
-      <a href="/actor_search_delete.php">배우</a>
-      <a href="/theater_search_delete.php">극장</a>
+      <a href="/DB_Project/movie_search_delete.php">영화 </a>
+      <a href="/DB_Project/director_search_delete.php">감독</a>
+      <a href="/DB_Project/actor_search_delete.php">배우</a>
+      <a href="/DB_Project/theater_search_delete.php">극장</a>
     </div>
   </nav>
 
@@ -78,8 +118,8 @@
                                             </div>
                                             <div class="row form-group">
                                                 <div class="col-md-12">
-                                                    <label style="color:white"for="gun">도</label>
-                                                    <input type="text" class="form-control" id="do"  placeholder="군">
+                                                    <label style="color:white"for="gun">군</label>
+                                                    <input type="text" class="form-control" id="gun"  placeholder="군">
                                                 </div>
                                             </div>
                                             <div class="row form-group">
@@ -97,7 +137,7 @@
                                             
                                             <div class="row form-group">
                                                 <div class="col-md-12">
-                                                    <input type="submit" class="btn btn-primary btn-block" value="추가"">
+                                                    <input type="submit" id= "add_button" class="btn btn-primary btn-block" value="추가"">
                                                 </div>
                                             </div>
                                         </form>	

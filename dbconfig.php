@@ -2,7 +2,7 @@
 $mysql_hostname = "localhost";//접속주소 
 $mysql_username = "root";//접속계정
 $mysql_password = "1234";//비밀번호
-$mysql_database = "mydb";//데이터베이스 명
+$mysql_database = "test";//데이터베이스 명
 
 $conn = mysqli_connect($mysql_hostname, $mysql_username, $mysql_password, $mysql_database);
 
