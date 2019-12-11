@@ -1,6 +1,6 @@
-<!-- <?php
-  require_once("dbconfig.php");
-  ?> -->
+<?php
+  require_once("../dbconfig.php");
+  ?>
   
   <!DOCTYPE html>
   <html lang="en">
@@ -15,15 +15,15 @@
     <title>이전제, 이남규 DB project</title>
   
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   
     <!-- Custom fonts for this template -->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-    <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="../vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
   
     <!-- Custom styles for this template -->
-    <link href="css/landing-page.min.css" rel="stylesheet">
+    <link href="../css/landing-page.min.css" rel="stylesheet">
   
   </head>
   
@@ -162,7 +162,7 @@ $('#search_button').click(function () {
     </nav>
   
     <!-- Masthead -->
-    <header class="masthead text-white text-center"  style="background-image: url('img/theater_search.jpg');" >
+    <header class="masthead text-white text-center"  style="background-image: url('../img/theater_search.jpg');" >
       <div class="overlay"></div>
       <div class="container">
         <div class="row">
@@ -245,8 +245,8 @@ $('#search_button').click(function () {
     </footer>
   
     <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   
   </body>
   

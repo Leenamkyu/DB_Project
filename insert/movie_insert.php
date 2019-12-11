@@ -1,3 +1,6 @@
+<?php
+  require_once("../dbconfig.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,15 +14,15 @@
   <title>이전제, 이남규 DB project</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Custom fonts for this template -->
-  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-  <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
+  <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="../vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 
   <!-- Custom styles for this template -->
-  <link href="css/landing-page.min.css" rel="stylesheet">
+  <link href="../css/landing-page.min.css" rel="stylesheet">
 
 </head>
 
@@ -40,14 +43,11 @@ $('#add_button').click(function () {
       var add_opening_period = $("#opening_period").val();
       var add_booking_rate = $("#booking_rate").val();
       
-      // var values = "(null,"+add_name+","+add_birth+","+add_gender+","+add_country+")";  
-      // console.log(values);     
-      // var order = "insert into director values"+values;
-      // console.log(order);
+
       alert("제목: "+add_title+", 장르: "+add_genre+", 국가: "+ add_country+ ", 러닝타임: "+add_running_time+", 개봉일: "+add_release_date+
             ", 연령제한: "+add_age_limit+", d_id: "+add_d_id+", 평점: "+add_rating+", 상영기간: "+add_opening_period+", 예매율: "+ add_booking_rate);           
 
-      request = $.post('/DB_Project/movie_insert_process.php', {
+      request = $.post('/DB_Project/insert_process/movie_insert_process.php', {
           // sql: order, -------> 여기서 sql문을 다 만들어서 보내려니까 에러가 발생 ----> 각 삽입 페이지를 별도로 만들면 에러 x
           sql_title: add_title,
           sql_genre: add_genre,
@@ -76,15 +76,15 @@ $('#add_button').click(function () {
   <nav class="navbar navbar-light bg-light static-top">
     <div class="container">
       <a class="navbar-brand" href="#"> Database Project</a>
-      <a href="/DB_Project/movie_search_delete.php">영화</a>
-      <a href="/DB_Project/director_search_delete.php">감독</a>
-      <a href="/DB_Project/actor_search_delete.php">배우</a>
-      <a href="/DB_Project/theater_search_delete.php">극장</a>
+      <a href="/DB_Project/main/movie_search_delete.php">영화</a>
+      <a href="/DB_Project/main/director_search_delete.php">감독</a>
+      <a href="/DB_Project/main/actor_search_delete.php">배우</a>
+      <a href="/DB_Project/main/theater_search_delete.php">극장</a>
     </div>
   </nav>
 
   <!-- Masthead -->
-  <header  class="masthead text-white text-center"  style="background-image: url('img/bg-masthead.jpg');">
+  <header  class="masthead text-white text-center"  style="background-image: url('../img/bg-masthead.jpg');">
     <div class="overlay"></div>
     <div class="gtco-container">
         <div class="row">
@@ -234,8 +234,8 @@ $('#add_button').click(function () {
   </footer>
 
   <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../vendor/jquery/jquery.min.js"></script>
+  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </body>
 
