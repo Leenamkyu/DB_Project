@@ -49,20 +49,20 @@ $(document).ready(function () {
                     
                   if (confirm('해당 영화를 삭제하시겠습니까?')) {
                      
-                      //  request2 = $.post('/', {
-                      //      m_id: this.value,                           
-                      //  }, function (returnedData) {
-                      //      console.log(returnedData);
-                      //  });
-                      //  request2.done(function (response, textStatus, jqXHR) {
-                      //      alert('영화가 삭제되었습니다.');
-                      //setTimeout(() => {
-                      //location.reload();   
-                      //}, 1000);                     
-                      //  });
-                      //  request2.fail(function (response, textStatus, jqXHR) {
-                      //       alert('영화 삭제에 실패하였습니다.')
-                      //  });
+                       request2 = $.post('/DB_Project/movie_delete_process.php', {
+                           m_id: this.value,                           
+                       }, function (returnedData) {
+                           console.log(returnedData);
+                       });
+                       request2.done(function (response, textStatus, jqXHR) {
+                           alert('영화가 삭제되었습니다.');
+                      setTimeout(() => {
+                      location.reload();   
+                      }, 1000);                     
+                       });
+                       request2.fail(function (response, textStatus, jqXHR) {
+                            alert('영화 삭제에 실패하였습니다.')
+                       });
                    } 
                    else {
                     
