@@ -118,7 +118,7 @@ $(document).ready(function () {
     var search_value = $("#search_value").val();
     alert(search_value);
 
-    request = $.post(' /select_process.php', {
+    request = $.post('/DB_Project/select_process.php', {
       sql: search_value,
     }, function (returnedData) {
       console.log(returnedData);
