@@ -27,14 +27,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function () {
-    var value = "<?php echo $_POST['name']; ?>"
-      console.log(value);
 
+var request;
 $('#add_button').click(function () {
 
       var review = $("#review").val();
-      var m_id = "<?php echo $_POST['name']; ?>"
-      console.log(m_id);
+      var m_id = "<?php echo $_POST['name']; ?>";
+      
       console.log(review);
 
       request = $.post('/DB_Project/insert_process/review_insert_process.php', {
@@ -48,12 +47,7 @@ $('#add_button').click(function () {
 
 
       request.done(function (response, textStatus, errorThrown) { // Log the error to the console
-      console.log(response);
-        if(response=='Error'){
-            alert('리뷰 추가에 실패하였습니다.');
-      }else{
-        alert('리뷰를 추가하였습니다');
-      }
+      alert(response);
        
     });
       request.fail(function (response, textStatus, errorThrown) { // Log the error to the console

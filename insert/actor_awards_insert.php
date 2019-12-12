@@ -29,11 +29,44 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script type="text/javascript">
-$(document).ready(function () {
+$(document).ready(function () { 
 
+var request;
 $('#add_button').click(function () {
+      var value = "<?php echo $_POST['name']; ?>"
+      console.log(value);
+      var add_a_id = value;
+      var add_m_id = $("#m_id").val();
+      var add_appearance = $("#appearance").val();
+      var add_awards = $("#awards").val();
+      console.log(add_m_id);
+      console.log(add_appearance);
+      console.log(add_awards); 
 
+      alert("m_id: "+add_m_id+", 출연작: "+add_appearance+", 수상: "+ add_awards);     
+           
+      request = $.post('/DB_Project/insert_process/actor_awards_insert_process.php', {
+          // sql: order, -------> 여기서 sql문을 다 만들어서 보내려니까 에러가 발생 ----> 각 삽입 페이지를 별도로 만들면 에러 x
+          sql_a_id: add_a_id,
+          sql_m_id: add_m_id,
+          sql_appearance: add_appearance,
+          sql_awards: add_awards,
+        }, function (returnedData) {
+          console.log(returnedData);
+      });
 
+      request.done(function (response, textStatus, errorThrown) { // Log the error to the console
+      console.log(response);
+        if(response=='Error'){
+            alert('출연작품 추가에 실패하였습니다.');
+      }else{
+        alert('출연작품을 추가하였습니다');
+      }
+       
+    });
+      request.fail(function (response, textStatus, errorThrown) { // Log the error to the console
+      alert('출연작품 추가에 실패하였습니다2.');
+    });
        
 });
 

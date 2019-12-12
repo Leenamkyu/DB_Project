@@ -31,6 +31,7 @@
 <script type="text/javascript">
 var request;
 var request2;
+var request3;
 $(document).ready(function () {
 
   request = $.post("/DB_Project/select_process.php", {
@@ -85,19 +86,21 @@ $(document).ready(function () {
 
       $("[id^=read]").click(function () {
         if (confirm('해당 영화 리뷰를 보시겠습니까?')) {
-          //  request2 = $.post('/', {
-          //      m_id: this.value,                           
-          //  }, function (returnedData) {
-          //      console.log(returnedData);
-          //  });
-          //  request2.done(function (response, textStatus, jqXHR) {
-          //$('#movie_list_table').empty(); //새로운 쿼리에 대한 table을 생성하기 위해 기존 table 삭제(남규)
-          //buildHtmlTable(response, '#movie_list_table');
+         
+          var request3 = $.post('/DB_Project/review_process/movie_review_process.php', {
+               m_id: this.value,                           
+           }, function (returnedData) {
+               console.log(returnedData);
+           });
+           request3.done(function (response, textStatus, jqXHR) {
+          $('#movie_list_table').empty(); //새로운 쿼리에 대한 table을 생성하기 위해 기존 table 삭제(남규)
+          buildHtmlTable2(response, '#movie_list_table');
+          console.log(response)
 
-          //  });
-          //  request2.fail(function (response, textStatus, jqXHR) {
-          //       alert('해당 영화의 리뷰가 없습니다')
-          //  });
+           });
+           request3.fail(function (response, textStatus, jqXHR) {
+                alert('해당 영화의 리뷰가 없습니다')
+           });
         }
 
       }); // end of button click              
@@ -170,23 +173,25 @@ $(document).ready(function () {
         }); // end of button click
 
         $("[id^=read]").click(function () {
-          if (confirm('해당 영화 리뷰를 보시겠습니까?')) {
-            //  request2 = $.post('/select/review_asdf', {
-            //      m_id: this.value,                           
-            //  }, function (returnedData) {
-            //      console.log(returnedData);
-            //  });
-            //  request2.done(function (response, textStatus, jqXHR) {
-            //$('#movie_list_table').empty(); //새로운 쿼리에 대한 table을 생성하기 위해 기존 table 삭제(남규)
-            //buildHtmlTable(response, '#movie_list_table');
+        if (confirm('해당 영화 리뷰를 보시겠습니까?')) {
+          alert(this.value);
+          var request3 = $.post('/DB_Project/review_process/movie_review_process.php', {
+               m_id: this.value,                           
+           }, function (returnedData) {
+               console.log(returnedData);
+           });
+           request3.done(function (response, textStatus, jqXHR) {
+          $('#movie_list_table').empty(); //새로운 쿼리에 대한 table을 생성하기 위해 기존 table 삭제(남규)
+          buildHtmlTable2(response, '#movie_list_table');
+          console.log(response)
 
-            //  });
-            //  request2.fail(function (response, textStatus, jqXHR) {
-            //       alert('해당 영화의 리뷰가 없습니다')
-            //  });
-          }
+           });
+           request3.fail(function (response, textStatus, jqXHR) {
+                alert('해당 영화의 리뷰가 없습니다')
+           });
+        }
 
-        }); // end of button click
+      }); // end of button click 
 
 
       }
@@ -223,7 +228,19 @@ function buildHtmlTable(myList, selector)  {
         $(selector).append(row$);
     }
 }
+function buildHtmlTable2(myList, selector)  {
+    var columns = addAllColumnHeaders(myList, selector);
 
+    for (var i = 0; i < myList.length; i++) {
+        var row$ = $('<tr/>');
+        for (var colIndex = 0; colIndex < columns.length; colIndex++) {
+            var cellValue = myList[i][columns[colIndex]];
+            if (cellValue == null) cellValue = "";
+            row$.append($('<td style="color:white   "/>').html(cellValue));
+        }
+        $(selector).append(row$);
+    }
+}
 // Adds a header row to the table and returns the set of columns.
 // Need to do union of keys from all records as some records may not contain
 // all records.
