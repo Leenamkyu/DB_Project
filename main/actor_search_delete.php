@@ -29,7 +29,6 @@
   
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script type="text/javascript">
-<<<<<<< HEAD
   var request;
 
   $(document).ready(function () {
@@ -222,102 +221,6 @@
         $(selector).append(row$);
       }
     }
-=======
-  
-  var request;
-  
-  $(document).ready(function () {
-  
-    request = $.post("/DB_Project/select_process.php", {
-             sql: "select * from actor",
-         }, function (returnedData) {
-         });
-  
-           request.done(function (response, textStatus, jqXHR) { // Log a message to the console
-          if (response.length == 0) {
-                  alert('데이터베이스에 배우 정보가 없습니다.')
-              } else {
-                buildHtmlTable(response, '#movie_list_table');
-                $("[id^=row]").click(function () {
-                    
-                    if (confirm('해당 배우를 삭제하시겠습니까?')) {
-                       
-                         request2 = $.post('/DB_Project/delete_process/actor_delete_process.php', {
-                             a_id: this.value,                           
-                         }, function (returnedData) {
-                             console.log(returnedData);
-                         });
-                         request2.done(function (response, textStatus, jqXHR) {
-                             alert('배우가 삭제되었습니다.');
-                        setTimeout(() => {
-                        location.reload();   
-                        }, 1000);                     
-                         });
-                         request2.fail(function (response, textStatus, jqXHR) {
-                              alert('배우 삭제에 실패하였습니다.')
-                         });
-                     } 
-                     else {
-                      
-                     }
-                 }); // end of button click
-              }
-          });
-          request.fail(function (jqXHR, textStatus, errorThrown) { // Log the error to the console
-          alert('fail request');
-          });
-
-$('#search_button').click(function () {
-          event.preventDefault();
-
-          if (request) {
-              request.abort();
-          }
-
-          var search_value = $("#search_value").val();
-          alert(search_value);           
-
-          request = $.post('/DB_Project/select_process.php', {
-             sql: search_value,                
-           }, function (returnedData) {
-              console.log(returnedData);
-          });
-
-          request.done(function (response, textStatus, jqXHR) { // Log a message to the console
-          if (response.length == 0) {
-                  alert('검색 조건에 일치하는 배우가 없습니다.')
-              } else {
-                $('#movie_list_table').empty();//새로운 쿼리에 대한 table을 생성하기 위해 기존 table 삭제(남규)
-                buildHtmlTable(response, '#movie_list_table');
-              }
-          });
-          request.fail(function (jqXHR, textStatus, errorThrown) { // Log the error to the console
-          alert('해당 배우를 찾지 못했습니다');
-          });
-          
-});         
-           
-});
-  </script>
-  
-  <script>
-  function buildHtmlTable(myList, selector)  {
-      var columns = addAllColumnHeaders(myList, selector);
-  
-      for (var i = 0; i < myList.length; i++) {
-          var row$ = $('<tr/>');
-          for (var colIndex = 0; colIndex < columns.length; colIndex++) {
-              var cellValue = myList[i][columns[colIndex]];
-              if (cellValue == null) cellValue = "";
-              row$.append($('<td style="color:white	"/>').html(cellValue));
-          }
-          row$.append($('<button type="button" id=row"' + i + '" style ="background-color:white; "class="btn btn btn-block" value="' + myList[i]['a_id'] + '" />').html('배우 삭제'));
-  
-          $(selector).append(row$);
-      }
-  }
-  
->>>>>>> c8b6059ca1f26513652dbb0af010d70042cc93a1
   // Adds a header row to the table and returns the set of columns.
   // Need to do union of keys from all records as some records may not contain
   // all records.
@@ -358,29 +261,17 @@ $('#search_button').click(function () {
   
     <!-- Masthead -->
     <header class="masthead text-white text-center"  style="background-image: url('../img/actor_search.jpg');" >
-<<<<<<< HEAD
     <div class="overlay"></div>
       <div class="container">
         <div class="row">
           <div class="col-xl-9 mx-auto">
             <h1 class="mb-5">actor 테이블 Query를 입력하세요</h1>
-=======
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row">
-          <div class="col-xl-9 mx-auto">
-            <h1 class="mb-5">배우 이름을 입력하세요</h1>
->>>>>>> c8b6059ca1f26513652dbb0af010d70042cc93a1
           </div>
           <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
             <form>
               <div class="form-row">
                 <div class="col-12 col-md-9 mb-2 mb-md-0">
-<<<<<<< HEAD
                   <input type="text" id= "search_value" class="form-control form-control-lg" placeholder="ex) select * from actor...">
-=======
-                  <input type="text" id= "search_value" class="form-control form-control-lg" placeholder="ex) 권상우...">
->>>>>>> c8b6059ca1f26513652dbb0af010d70042cc93a1
                 </div>
                 <div class="col-12 col-md-3">
                   <button type="submit" id= "search_button" class="btn btn-block btn-lg btn-primary">검색</button>

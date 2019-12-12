@@ -201,12 +201,6 @@ $(document).ready(function () {
 });
 
 
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> c8b6059ca1f26513652dbb0af010d70042cc93a1
 </script>
 
 <script>
@@ -221,13 +215,10 @@ function buildHtmlTable(myList, selector)  {
             row$.append($('<td style="color:white	"/>').html(cellValue));
         }
         row$.append($('<button type="button" id=row"' + i + '" style ="background-color:white; "class="btn btn btn-block" value="' + myList[i]['m_id'] + '" />').html('영화 삭제'));
-<<<<<<< HEAD
         row$.append($('<td/>'));
       row$.append($('<button type="button" id=write"' + i + '" style ="background-color:white; "class="btn btn btn-block" value="' + myList[i]['m_id'] + '" />').html('리뷰 쓰기 '));
       row$.append($('<td/>'));
       row$.append($('<button type="button" id=read"' + i + '" style ="background-color:white; "class="btn btn btn-block" value="' + myList[i]['m_id'] + '" />').html('리뷰 보기 '));
-=======
->>>>>>> c8b6059ca1f26513652dbb0af010d70042cc93a1
 
         $(selector).append(row$);
     }
@@ -272,31 +263,19 @@ function addAllColumnHeaders(myList, selector) {
     </div>
   </nav>
 
-<<<<<<< HEAD
-
-=======
->>>>>>> c8b6059ca1f26513652dbb0af010d70042cc93a1
   <!-- Masthead -->
   <header class="masthead text-white text-center"  style="background-image: url('../img/movie_bg2.jpg');" >
     <div class="overlay"></div>
     <div class="container">
       <div class="row">
         <div class="col-xl-9 mx-auto">
-<<<<<<< HEAD
           <h1 class="mb-5">movie 테이블 Query를 입력하세요</h1>
-=======
-          <h1 class="mb-5">영화 제목을 입력하세요</h1>
->>>>>>> c8b6059ca1f26513652dbb0af010d70042cc93a1
         </div>
         <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
           <form>
             <div class="form-row">
               <div class="col-12 col-md-9 mb-2 mb-md-0">
-<<<<<<< HEAD
                 <input type="text" id="search_value" class="form-control form-control-lg" placeholder="ex) select * from movie...">
-=======
-                <input type="text" id="search_value" class="form-control form-control-lg" placeholder="ex) 신의 한수...">
->>>>>>> c8b6059ca1f26513652dbb0af010d70042cc93a1
               </div>
               <div class="col-12 col-md-3">
                 <button type="submit" id="search_button" class="btn btn-block btn-lg btn-primary">검색</button>
@@ -320,10 +299,6 @@ function addAllColumnHeaders(myList, selector) {
   <!-- Advanced Tables -->
 
 
-<<<<<<< HEAD
-=======
-
->>>>>>> c8b6059ca1f26513652dbb0af010d70042cc93a1
   <!-- Footer -->
   <footer class="footer bg-light">
     <div class="container">

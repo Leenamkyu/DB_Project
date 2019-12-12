@@ -207,14 +207,11 @@
               row$.append($('<td style="color:white	"/>').html(cellValue));
           }
           row$.append($('<button type="button" id=row"' + i + '" style ="background-color:white; "class="btn btn btn-block" value="' + myList[i]['theater_name'] + '" />').html('영화관 삭제'));
-<<<<<<< HEAD
           row$.append($('<td/>'));
           row$.append($('<button type="button" id=write"' + i + '" style ="background-color:white; "class="btn btn btn-block" value="' + myList[i]['theater_name'] + '" />').html('정보 추가'));
           row$.append($('<td/>'));
           row$.append($('<button type="button" id=read"' + i + '" style ="background-color:white; "class="btn btn btn-block" value="' + myList[i]['theater_name'] + '" />').html('정보 확인'));
 
-=======
->>>>>>> c8b6059ca1f26513652dbb0af010d70042cc93a1
   
           $(selector).append(row$);
       }
@@ -260,29 +257,17 @@
   
     <!-- Masthead -->
     <header class="masthead text-white text-center"  style="background-image: url('../img/theater_search.jpg');" >
-<<<<<<< HEAD
     <div class="overlay"></div>
       <div class="container">
         <div class="row">
           <div class="col-xl-9 mx-auto">
             <h1 class="mb-5">theater 테이블 Query를 입력하세요</h1>
-=======
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row">
-          <div class="col-xl-9 mx-auto">
-            <h1 class="mb-5">영화관 이름을 입력하세요</h1>
->>>>>>> c8b6059ca1f26513652dbb0af010d70042cc93a1
           </div>
           <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
             <form>
               <div class="form-row">
                 <div class="col-12 col-md-9 mb-2 mb-md-0">
-<<<<<<< HEAD
                   <input type="text" id="search_value" class="form-control form-control-lg" placeholder="ex) select * from theater ">
-=======
-                  <input type="text" id="search_value" class="form-control form-control-lg" placeholder="ex) CGV 신촌점...">
->>>>>>> c8b6059ca1f26513652dbb0af010d70042cc93a1
                 </div>
                 <div class="col-12 col-md-3">
                   <button type="submit" id= "search_button"class="btn btn-block btn-lg btn-primary">검색</button>
