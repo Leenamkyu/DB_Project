@@ -28,30 +28,43 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script type="text/javascript">
+var request;
 $(document).ready(function () {
 
-$('#add_button').click(function () {
+  $('#add_button').click(function () {
 
-      var add_name = $("#name").val();
-      var add_birth = $("#birth").val();
-      var add_gender = $("#gender").val();
-      var add_country = $("#country").val();
+    var add_name = $("#name").val();
+    var add_birth = $("#birth").val();
+    var add_gender = $("#gender").val();
+    var add_country = $("#country").val();
+
+
+    alert("이름: " + add_name + ", 생일: " + add_birth + ", 성별: " + add_gender + ", 국적: " + add_country);
+
+    request = $.post('/DB_Project/insert_process/director_insert_process.php', {
+      // sql: order, -------> 여기서 sql문을 다 만들어서 보내려니까 에러가 발생 ----> 각 삽입 페이지를 별도로 만들면 에러 x
+      sql_name: add_name,
+      sql_birth: add_birth,
+      sql_gender: add_gender,
+      sql_country: add_country,
+    }, function (returnedData) {
+      console.log(returnedData);
+    });
+
+    request.done(function (response, textStatus, jqXHR) {
+      alert(response);
+      setTimeout(() => {
+                  location.reload();
+                }, 500);
       
+    });
+    request.fail(function (response, textStatus, jqXHR) {
+      alert('실패하였습니다.')
+    });
 
-      alert("이름: "+add_name+", 생일: "+add_birth+", 성별: "+ add_gender+ ", 국적: "+add_country);           
 
-      request = $.post('/DB_Project/insert_process/director_insert_process.php', {
-          // sql: order, -------> 여기서 sql문을 다 만들어서 보내려니까 에러가 발생 ----> 각 삽입 페이지를 별도로 만들면 에러 x
-          sql_name: add_name,
-          sql_birth: add_birth,
-          sql_gender: add_gender,
-          sql_country: add_country,
-        }, function (returnedData) {
-          console.log(returnedData);
-      });
-       
-});
 
+  });
 
 });
 

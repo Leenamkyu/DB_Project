@@ -62,6 +62,18 @@ $('#add_button').click(function () {
         }, function (returnedData) {
           console.log(returnedData);
       });
+
+      request.done(function (response, textStatus, jqXHR) {
+      alert(response);
+      setTimeout(() => {
+                  location.reload();
+                }, 500);
+      
+    });
+    request.fail(function (response, textStatus, jqXHR) {
+      alert('실패하였습니다.')
+    });
+    
        
 });
 

@@ -11,6 +11,7 @@
         $sql = "insert into movie_review values(null,'$_POST[m_id]','$_POST[review]')";
         $result = mysqli_query($conn, $sql);
         if($result){
+            echo "추가되었습니다";
         }
         else{
             echo "Error";

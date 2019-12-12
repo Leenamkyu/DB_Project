@@ -10,6 +10,7 @@
                                               '$_POST[sql_release_date]','$_POST[sql_age_limit]','$_POST[sql_d_id]','$_POST[sql_rating]','$_POST[sql_opening_period]','$_POST[sql_booking_rate]')";
         $result = mysqli_query($conn, $sql);
         if($result){
+            echo "추가되었습니다";
         }
         else{
             echo "Error";

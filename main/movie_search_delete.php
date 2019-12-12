@@ -216,9 +216,9 @@ function buildHtmlTable(myList, selector)  {
         }
         row$.append($('<button type="button" id=row"' + i + '" style ="background-color:white; "class="btn btn btn-block" value="' + myList[i]['m_id'] + '" />').html('영화 삭제'));
         row$.append($('<td/>'));
-      row$.append($('<button type="button" id=write"' + i + '" style ="background-color:white; "class="btn btn btn-block" value="' + myList[i]['m_id'] + '" />').html('리뷰 쓰기 '));
-      row$.append($('<td/>'));
-      row$.append($('<button type="button" id=read"' + i + '" style ="background-color:white; "class="btn btn btn-block" value="' + myList[i]['m_id'] + '" />').html('리뷰 보기 '));
+        row$.append($('<button type="button" id=write"' + i + '" style ="background-color:white; "class="btn btn btn-block" value="' + myList[i]['m_id'] + '" />').html('리뷰 쓰기 '));
+        row$.append($('<td/>'));
+        row$.append($('<button type="button" id=read"' + i + '" style ="background-color:white; "class="btn btn btn-block" value="' + myList[i]['m_id'] + '" />').html('리뷰 보기 '));
 
         $(selector).append(row$);
     }
